@@ -1,7 +1,10 @@
 package com.si.projects.course.entity;
 
 import jakarta.persistence.*;
-import lombok.*;
+import lombok.AccessLevel;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 import lombok.experimental.FieldDefaults;
 
 @FieldDefaults(level = AccessLevel.PRIVATE)
@@ -9,18 +12,34 @@ import lombok.experimental.FieldDefaults;
 @Setter
 @Entity
 @Table(name = "cats")
-@AllArgsConstructor
 @NoArgsConstructor
 public class Cat {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private
     int id;
 
     @Column(unique = true)
+    private
     String name;
 
-    int age;
+    private int age;
 
-    int weight;
+    private int weight;
+
+    public Cat(String name, int age, int weight) {
+        this.name = name;
+        this.age = age;
+        this.weight = weight;
+    }
+
+    @Override
+    public String toString() {
+        return "Cat{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", age=" + age +
+                ", weight=" + weight +
+                '}';
+    }
 }
